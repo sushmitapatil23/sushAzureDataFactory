@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "rgADFDevSush"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sqlserversush.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "sqldatabasesush"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "CloudSQLServer2025"
+		},
+		"ParamLinkedService_properties_typeProperties_server": {
+			"value": "@{linkedService().serverName}"
+		},
+		"ParamLinkedService_properties_typeProperties_database": {
+			"value": "@{linkedService().dbName}"
+		},
+		"ParamLinkedService_properties_typeProperties_userName": {
+			"value": "@{linkedService().userName}"
+		},
+		"EventtriggerSourceBlobSinkBlob_properties_typeProperties_scope": {
+			"value": "/subscriptions/74978c73-22ed-4fd5-9de2-85878197ac55/resourceGroups/rg_ADF_Sush/providers/Microsoft.Storage/storageAccounts/storageaccountadfsush"
+		}
+	}
+}
