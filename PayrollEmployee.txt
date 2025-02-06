@@ -1,0 +1,11 @@
+empid,empname,country,depname,salary
+1,Susmita,India,IT,200
+3,Sunita,India,HR,300
+4,Chandan,Dubai,Finance,400
+5,Aayansh,India,Admin,200
+6,Devansh,India,News,100
+7,Priya,India,News,200
+8,Sush,India,Marketing,300
+9,Sushma,USA,Marketing,500
+10,Kailas,USA,IT,600
+
