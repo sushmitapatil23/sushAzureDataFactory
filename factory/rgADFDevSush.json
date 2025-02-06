@@ -1,0 +1,9 @@
+{
+	"name": "rgADFDevSush",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2d4c0000-440c-41c0-b99a-c12d4f93c06b",
+		"tenantId": "2400f16b-f4f6-41a2-96da-d95f10307743"
+	}
+}

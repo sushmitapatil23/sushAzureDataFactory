@@ -1,0 +1,50 @@
+{
+	"name": "PowerQueryPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Power Query1",
+				"type": "ExecuteWranglingDataflow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "powerquery1",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"queries": [
+						{
+							"queryName": "UserQuery",
+							"dataflowSinks": [
+								{
+									"name": "UserQueryDestionationOutputSinkBlob",
+									"dataset": {
+										"referenceName": "DestionationOutputSinkBlob",
+										"type": "DatasetReference"
+									},
+									"script": "sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> UserQueryDestionationOutputSinkBlob"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [
+			"Power Query"
+		],
+		"lastPublishTime": "2025-02-05T12:34:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

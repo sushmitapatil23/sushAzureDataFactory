@@ -1,0 +1,19 @@
+{
+	"name": "DestinationBlobFile1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "File1.txt",
+				"container": "output1"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

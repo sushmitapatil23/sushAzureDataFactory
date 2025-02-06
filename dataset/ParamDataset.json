@@ -1,0 +1,55 @@
+{
+	"name": "ParamDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ParamLinkedService",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"serverName": {
+					"value": "@dataset().serverNamefromDataset",
+					"type": "Expression"
+				},
+				"dbName": {
+					"value": "@dataset().dbNamefromDataset",
+					"type": "Expression"
+				},
+				"userName": {
+					"value": "@dataset().userNamefromDataset",
+					"type": "Expression"
+				},
+				"password": {
+					"value": "@dataset().passwordfromDataset",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"tableName": {
+				"type": "string"
+			},
+			"serverNamefromDataset": {
+				"type": "string"
+			},
+			"dbNamefromDataset": {
+				"type": "string"
+			},
+			"userNamefromDataset": {
+				"type": "string"
+			},
+			"passwordfromDataset": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().tableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

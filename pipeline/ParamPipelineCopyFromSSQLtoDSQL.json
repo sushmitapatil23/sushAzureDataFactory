@@ -1,0 +1,126 @@
+{
+	"name": "ParamPipelineCopyFromSSQLtoDSQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy datasql2sql",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ParamDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": {
+								"value": "@pipeline().parameters.sourcetableNamefromPipeline",
+								"type": "Expression"
+							},
+							"serverNamefromDataset": {
+								"value": "@pipeline().parameters.serverNamefromPipeline",
+								"type": "Expression"
+							},
+							"dbNamefromDataset": {
+								"value": "@pipeline().parameters.dbNamefromPipeline",
+								"type": "Expression"
+							},
+							"userNamefromDataset": {
+								"value": "@pipeline().parameters.userNamefromPipeline",
+								"type": "Expression"
+							},
+							"passwordfromDataset": {
+								"value": "@pipeline().parameters.passwordfromPipeline",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ParamDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": {
+								"value": "@pipeline().parameters.sinktableNamefromPipeline",
+								"type": "Expression"
+							},
+							"serverNamefromDataset": {
+								"value": "@pipeline().parameters.serverNamefromPipeline",
+								"type": "Expression"
+							},
+							"dbNamefromDataset": {
+								"value": "@pipeline().parameters.dbNamefromPipeline",
+								"type": "Expression"
+							},
+							"userNamefromDataset": {
+								"value": "@pipeline().parameters.userNamefromPipeline",
+								"type": "Expression"
+							},
+							"passwordfromDataset": {
+								"value": "@pipeline().parameters.passwordfromPipeline",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"sourcetableNamefromPipeline": {
+				"type": "string",
+				"defaultValue": "emp"
+			},
+			"serverNamefromPipeline": {
+				"type": "string",
+				"defaultValue": "sqlserversush.database.windows.net"
+			},
+			"dbNamefromPipeline": {
+				"type": "string",
+				"defaultValue": "sqldatabasesush"
+			},
+			"userNamefromPipeline": {
+				"type": "string",
+				"defaultValue": "CloudSQLServer2025"
+			},
+			"passwordfromPipeline": {
+				"type": "string",
+				"defaultValue": "CloudSQLServer23042025"
+			},
+			"sinktableNamefromPipeline": {
+				"type": "string",
+				"defaultValue": "sinkemp"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-01-31T11:28:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

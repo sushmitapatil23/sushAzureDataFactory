@@ -1,0 +1,20 @@
+{
+	"name": "powerquery1",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "EmpSource",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> EmpSource",
+					"dataset": {
+						"referenceName": "EmpSource",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"script": "section Section1;\r\nshared EmpSource = let AdfDoc = AzureStorage.BlobContents(\"https://storageaccountadfsush.blob.core.windows.net/source/Employee.txt\"),Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]), PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]) in  PromotedHeaders;\r\nshared UserQuery = let Source = #\"EmpSource\",\r\n  #\"Uppercased text\" = Table.TransformColumns(Source, {{\"country\", each Text.Upper(_), type nullable text}}),\r\n  #\"Removed duplicates\" = Table.Distinct(#\"Uppercased text\", {\"depname\"}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Removed duplicates\", \"CountryCode\", each if [country] = \"INDIA\" then \"I\" else if [country] = \"DUBAI\" then \"D\" else \"NA\") in #\"Inserted conditional column\";\r\n",
+			"documentLocale": "en-us"
+		}
+	}
+}

@@ -1,0 +1,75 @@
+{
+	"name": "ValidationPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "SourceDataset_u7u",
+						"type": "DatasetReference"
+					},
+					"sleep": 10
+				}
+			},
+			{
+				"name": "Variable_True",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Validation1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "SetVariable",
+						"value": "True"
+					}
+				],
+				"typeProperties": {
+					"variableName": "v_FileExists",
+					"value": "True"
+				}
+			},
+			{
+				"name": "Wait10Sec",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Validation1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [
+					{
+						"name": "WaitActivity",
+						"value": "10sec"
+					}
+				],
+				"typeProperties": {
+					"waitTimeInSeconds": 20
+				}
+			}
+		],
+		"variables": {
+			"v_FileExists": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-02-02T17:46:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

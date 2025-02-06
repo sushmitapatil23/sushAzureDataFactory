@@ -1,0 +1,25 @@
+{
+	"name": "EventtriggerSourceBlobSinkBlob",
+	"properties": {
+		"description": "After file placing - Event trigger Source Blob Sink Blob",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EvenTriggerParamSourceBlobSinkBlob",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/source/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/74978c73-22ed-4fd5-9de2-85878197ac55/resourceGroups/rg_ADF_Sush/providers/Microsoft.Storage/storageAccounts/storageaccountadfsush",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "Schedule trigger",
+	"properties": {
+		"description": "Schedule trigger - CopyFromBlobToSqlPipeline",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyFromBlobToSqlPipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2025-01-30T15:25:00",
+				"endTime": "2025-01-31T15:30:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

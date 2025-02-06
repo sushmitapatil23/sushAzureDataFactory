@@ -1,0 +1,81 @@
+{
+	"name": "WebActivityPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetWeb-GetallEmployeeDetails",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:01:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"disableCertValidation": false,
+					"turnOffAsync": false,
+					"url": {
+						"value": "@pipeline().parameters.GETWebUrl",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "PostWeb-CreateNewEmployeeDetails",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "GetWeb-GetallEmployeeDetails",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:01:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-type": "application\\json"
+					},
+					"disableCertValidation": false,
+					"turnOffAsync": false,
+					"url": {
+						"value": "@pipeline().parameters.POSTWebUrl",
+						"type": "Expression"
+					},
+					"body": {
+						"id": 25,
+						"employee_name": "Susmita PPP",
+						"employee_salary": 320800,
+						"employee_age": 40,
+						"profile_image": ""
+					}
+				}
+			}
+		],
+		"parameters": {
+			"GETWebUrl": {
+				"type": "string",
+				"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
+			},
+			"POSTWebUrl": {
+				"type": "string",
+				"defaultValue": "http://dummy.restapiexample.com/api/v1/create"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-02-02T18:32:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
