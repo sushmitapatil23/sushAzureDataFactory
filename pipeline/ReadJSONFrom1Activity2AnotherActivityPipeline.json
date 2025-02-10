@@ -1,5 +1,5 @@
 {
-	"name": "ReadJSONFrom1Acticity2AnotherActivityPipeline",
+	"name": "ReadJSONFrom1Activity2AnotherActivityPipeline",
 	"properties": {
 		"activities": [
 			{
