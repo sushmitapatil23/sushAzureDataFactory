@@ -28,18 +28,40 @@
 					"name": "ranksink"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "rank"
+				},
+				{
+					"name": "Denserank"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          empid as short,",
+				"          empname as string,",
+				"          country as string,",
+				"          depname as string,",
+				"          salary as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     limit: 20,",
 				"     ignoreNoFilesFound: false) ~> EmpSalary",
-				"EmpSalary sink(allowSchemaDrift: true,",
+				"EmpSalary rank(asc(salary, true),",
+				"     caseInsensitive: true,",
+				"     output(Rankcolumn as long)) ~> rank",
+				"EmpSalary rank(asc(salary, true),",
+				"     caseInsensitive: true,",
+				"     output(DenseRankcolumn as long),",
+				"     dense: true) ~> Denserank",
+				"Denserank sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['DenseRankSink.txt'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> denseranksink",
-				"EmpSalary sink(allowSchemaDrift: true,",
+				"rank sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['RankSink.txt'],",
 				"     skipDuplicateMapInputs: true,",
