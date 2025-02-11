@@ -39,7 +39,7 @@
 				"     RunningQuentityTotal = sum(toInteger(Quentity))) ~> window1",
 				"window1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['RunningTotal.txt'],",
+				"     partitionFileNames:['RunningTotalOutput.txt'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> sink1"
