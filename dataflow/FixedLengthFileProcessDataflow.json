@@ -5,22 +5,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "FixedFileProcess",
-						"type": "DatasetReference"
-					},
 					"name": "source1"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          {1000MAHEER   AP7799149889} as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1"
 			]
 		}
 	}
