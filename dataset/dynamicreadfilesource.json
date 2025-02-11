@@ -1,18 +1,14 @@
 {
-	"name": "rawOutputCSV",
+	"name": "dynamicreadfilesource",
 	"properties": {
-		"description": "Output CSV when all columns in good state",
 		"linkedServiceName": {
-			"referenceName": "InputBLOB",
+			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"fileName": {
+			"FileName": {
 				"type": "string"
 			}
-		},
-		"folder": {
-			"name": "0 Raw Datasets (Good Columns)"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -20,10 +16,10 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset().fileName",
+					"value": "@dataset().FileName",
 					"type": "Expression"
 				},
-				"container": "output"
+				"container": "source"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
