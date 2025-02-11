@@ -43,7 +43,7 @@
 				"Lastaggregate sort(asc(empid, false)) ~> sort1",
 				"source1 aggregate(groupBy(empid),",
 				"     each(match(name!='empid'), $$ = first($$))) ~> FirstValuesaggregate",
-				"FirstValuesaggregate sort(asc(ERROR_FUNCTION(''), true)) ~> sort2"
+				"FirstValuesaggregate sort(asc(empid, true)) ~> sort2"
 			]
 		}
 	}
