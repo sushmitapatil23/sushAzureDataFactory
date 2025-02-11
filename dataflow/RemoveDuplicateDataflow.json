@@ -12,7 +12,22 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestionationOutputSinkBlob",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DestionationOutputSinkBlob",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
 			"transformations": [
 				{
 					"name": "Lastaggregate"
@@ -43,7 +58,19 @@
 				"Lastaggregate sort(asc(empid, false)) ~> sort1",
 				"source1 aggregate(groupBy(empid),",
 				"     each(match(name!='empid'), $$ = first($$))) ~> FirstValuesaggregate",
-				"FirstValuesaggregate sort(asc(empid, true)) ~> sort2"
+				"FirstValuesaggregate sort(asc(empid, true)) ~> sort2",
+				"sort2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['FirstValueAggregate.txt'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['LastValueAggregate.txt'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2"
 			]
 		}
 	}
