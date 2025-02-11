@@ -28,7 +28,7 @@
 								"value": "@utcNow()",
 								"type": "Expression"
 							},
-							"wildcardFileName": "*.txt",
+							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
