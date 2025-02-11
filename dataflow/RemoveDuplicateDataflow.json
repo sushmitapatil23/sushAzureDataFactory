@@ -41,7 +41,8 @@
 				"     each(match(name!='empid'), $$ = last($$)),",
 				"     partitionBy('hash', 1)) ~> Lastaggregate",
 				"Lastaggregate sort(asc(empid, false)) ~> sort1",
-				"source1 aggregate(each(match(name!='empid'), $$ = first($$))) ~> FirstValuesaggregate",
+				"source1 aggregate(groupBy(empid),",
+				"     each(match(name!='empid'), $$ = first($$))) ~> FirstValuesaggregate",
 				"FirstValuesaggregate sort(asc(ERROR_FUNCTION(''), true)) ~> sort2"
 			]
 		}
