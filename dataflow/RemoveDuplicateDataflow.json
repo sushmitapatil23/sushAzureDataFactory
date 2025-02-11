@@ -32,7 +32,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 aggregate(groupBy(empid),",
-				"     each(match(name!='empid'), $$ = first($$)),",
+				"     each(match(name!='empid'), $$ = last($$)),",
 				"     partitionBy('hash', 1)) ~> aggregate1",
 				"aggregate1 sort(asc(empid, false)) ~> sort1"
 			]
