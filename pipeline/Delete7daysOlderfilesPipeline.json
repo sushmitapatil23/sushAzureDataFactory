@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "SourceInputBlobGeneral",
+						"referenceName": "DestionationOutputSinkBlob",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
