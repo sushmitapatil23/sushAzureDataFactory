@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Emp.txt",
+				"fileName": "Emails.txt",
 				"container": "source"
 			},
 			"columnDelimiter": ",",
