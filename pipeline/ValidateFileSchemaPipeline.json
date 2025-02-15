@@ -48,7 +48,9 @@
 						"referenceName": "ds_EmpRef",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"structure"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
