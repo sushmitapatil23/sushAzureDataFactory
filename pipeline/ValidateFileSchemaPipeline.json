@@ -81,6 +81,17 @@
 						"value": "@equals(activity('Get Metadata Emp').output.structure,activity('Get Metadata EmpRef').output.structure)",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Wait for False",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Wait for True",
