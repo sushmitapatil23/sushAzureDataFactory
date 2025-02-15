@@ -20,7 +20,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          {101} as string,",
@@ -31,14 +35,16 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> TxtTableAsource",
 				"source(output(",
-				"          id as integer,",
+				"          id as string,",
 				"          name as string,",
-				"          salary as integer",
+				"          salary as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Table1source"
+				"     format: 'table') ~> Table1source",
+				"TxtTableAsource derive(column1 = ERROR_FUNCTION(''),",
+				"          column2 = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
