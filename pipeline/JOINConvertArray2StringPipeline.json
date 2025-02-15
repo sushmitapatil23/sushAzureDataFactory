@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "LookupEmail",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -38,13 +38,35 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "LookupEmail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupEmail').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "EmailArray",
+								"value": {
+									"value": "@item().Emails",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
