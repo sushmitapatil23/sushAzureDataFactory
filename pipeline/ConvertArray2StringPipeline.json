@@ -64,7 +64,7 @@
 							"typeProperties": {
 								"variableName": "tmpEmail",
 								"value": {
-									"value": "@concat(item().Email,';',variables('Email'))",
+									"value": "@concat(item().Emails,';',variables('Emails'))",
 									"type": "Expression"
 								}
 							}
@@ -86,7 +86,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "Email",
+								"variableName": "Emails",
 								"value": {
 									"value": "@variables('tmpEmail')",
 									"type": "Expression"
@@ -98,7 +98,7 @@
 			}
 		],
 		"variables": {
-			"Email": {
+			"Emails": {
 				"type": "String"
 			},
 			"tmpEmail": {
