@@ -6,7 +6,13 @@
 				"name": "If Condition1",
 				"type": "IfCondition",
 				"dependsOn": [],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@contains('12345',string(dayOfWeek(utcNow())))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
