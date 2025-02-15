@@ -3,11 +3,42 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_txtTableA",
+						"type": "DatasetReference"
+					},
+					"name": "TxtTableAsource"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_TableA",
+						"type": "DatasetReference"
+					},
+					"name": "Table1source"
+				}
+			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				""
+				"source(output(",
+				"          {101} as string,",
+				"          John as string,",
+				"          {1500} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> TxtTableAsource",
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          salary as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> Table1source"
 			]
 		}
 	}
