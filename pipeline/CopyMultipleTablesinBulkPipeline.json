@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "ds_AzureSqlTable",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
