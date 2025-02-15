@@ -85,7 +85,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "EmailArray",
+					"variableName": "EmailString",
 					"value": {
 						"value": "@join(variables('EmailArray'),';')",
 						"type": "Expression"
