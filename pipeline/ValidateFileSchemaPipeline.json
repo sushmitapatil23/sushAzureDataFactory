@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ds_Email",
+						"referenceName": "ds_Emp",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
