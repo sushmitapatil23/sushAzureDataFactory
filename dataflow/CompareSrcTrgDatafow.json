@@ -22,7 +22,10 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "HashColSource1"
+				},
+				{
+					"name": "HashColSource2"
 				}
 			],
 			"scriptLines": [
@@ -43,8 +46,8 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Table1source",
-				"TxtTableAsource derive(column1 = ERROR_FUNCTION(''),",
-				"          column2 = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"TxtTableAsource derive(HashColSource1 = sha2(256, columns())) ~> HashColSource1",
+				"Table1source derive(HasColSource2 = sha2(256, columns())) ~> HashColSource2"
 			]
 		}
 	}
