@@ -19,13 +19,24 @@
 					"name": "Table1source"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestionationOutputSinkBlob",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "HashColSource1"
 				},
 				{
 					"name": "HashColSource2"
+				},
+				{
+					"name": "exists1"
 				}
 			],
 			"scriptLines": [
@@ -47,7 +58,16 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Table1source",
 				"TxtTableAsource derive(HashColSource1 = sha2(256, columns())) ~> HashColSource1",
-				"Table1source derive(HasColSource2 = sha2(256, columns())) ~> HashColSource2"
+				"Table1source derive(HasColSource2 = sha2(256, columns())) ~> HashColSource2",
+				"HashColSource1 exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     negate:true,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['CompareSrcFileTrgTale.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
