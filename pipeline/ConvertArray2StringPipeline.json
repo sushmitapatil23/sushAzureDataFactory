@@ -54,6 +54,14 @@
 				}
 			}
 		],
+		"variables": {
+			"Email": {
+				"type": "String"
+			},
+			"tmpEmail": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
