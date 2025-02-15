@@ -50,7 +50,50 @@
 						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set tmpEmails",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "tmpEmail",
+								"value": {
+									"value": "@concat(item().Email,';',variables('Email'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set Emails",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set tmpEmails",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Email",
+								"value": {
+									"value": "@variables('tmpEmail')",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
