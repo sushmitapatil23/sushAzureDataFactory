@@ -1,0 +1,64 @@
+{
+	"name": "SQLTableFileDynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"container": "sinkoutput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "empname",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "depname",
+				"type": "String"
+			},
+			{
+				"name": "SourceFile",
+				"type": "String"
+			},
+			{
+				"name": "Dup_name",
+				"type": "String"
+			},
+			{
+				"name": "PipelineName",
+				"type": "String"
+			},
+			{
+				"name": "Static_Column",
+				"type": "String"
+			}
+		]
+	}
+}

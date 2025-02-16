@@ -1,0 +1,76 @@
+{
+	"name": "CompareSrcTrgDatafow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_txtTableA",
+						"type": "DatasetReference"
+					},
+					"name": "TxtTableAsource"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_TableA",
+						"type": "DatasetReference"
+					},
+					"name": "Table1source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestionationOutputSinkBlob",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "HashColSource1"
+				},
+				{
+					"name": "HashColSource2"
+				},
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {101} as string,",
+				"          John as string,",
+				"          {1500} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> TxtTableAsource",
+				"source(output(",
+				"          id as string,",
+				"          name as string,",
+				"          salary as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     partitionBy('hash', 1)) ~> Table1source",
+				"TxtTableAsource derive(HashColSource1 = sha2(256, columns())) ~> HashColSource1",
+				"Table1source derive(HasColSource2 = sha2(256, columns()),",
+				"     partitionBy('hash', 1)) ~> HashColSource2",
+				"HashColSource1, HashColSource2 exists(HashColSource1 == HasColSource2,",
+				"     negate:true,",
+				"     broadcast: 'off')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['CompareSrcFileTrgTale.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,56 @@
+{
+	"name": "ConvertCSV2JSONDataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_custPurchase",
+						"type": "DatasetReference"
+					},
+					"name": "dscustpurchase"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_custpurchase_json",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          custId as string,",
+				"          custName as string,",
+				"          itemName as string,",
+				"          quantity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dscustpurchase",
+				"dscustpurchase derive(Purchase = @(itemName=itemName,",
+				"          quantity=quantity)) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(custId,",
+				"          custName),",
+				"     Purchase = collect(Purchase)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['ds_custpurchase_json.json'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
