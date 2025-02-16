@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -79,6 +80,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -228,7 +230,8 @@
 				"type": "String"
 			},
 			"PreviousModifiedDate": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "1990-01-01To5:12:227"
 			}
 		},
 		"annotations": []
