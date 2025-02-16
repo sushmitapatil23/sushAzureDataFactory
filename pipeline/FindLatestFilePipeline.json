@@ -85,17 +85,36 @@
 									"type": "DelimitedTextReadSettings"
 								}
 							}
+						},
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(formatDateTime(activity('Get Metadata2').output.lastModified,'yyyyMMddHHmmss'),formatDateTime(pipeline().parameters.PreviousModifiedDate)",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
 			}
 		],
-		"parameters": {
+		"variables": {
 			"LatestFileName": {
-				"type": "string"
+				"type": "String"
 			},
 			"PreviousModifiedDate": {
-				"type": "string"
+				"type": "String"
 			}
 		},
 		"annotations": []
