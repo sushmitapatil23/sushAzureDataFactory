@@ -91,7 +91,13 @@
 							"outputs": [
 								{
 									"referenceName": "dynamicSinkoutput",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"outFileName": {
+											"value": "APIpage{@item()}.csv",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
