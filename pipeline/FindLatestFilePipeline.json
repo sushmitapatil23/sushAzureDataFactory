@@ -231,7 +231,7 @@
 			},
 			"PreviousModifiedDate": {
 				"type": "String",
-				"defaultValue": "1990010105:12:227"
+				"defaultValue": "199001010512227"
 			}
 		},
 		"annotations": []
