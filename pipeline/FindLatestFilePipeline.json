@@ -90,6 +90,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"LatestFileName": {
+				"type": "string"
+			},
+			"PreviousModifiedDate": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
