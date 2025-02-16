@@ -17,9 +17,29 @@
 				"typeProperties": {
 					"method": "GET",
 					"url": {
-						"value": "https://reqres.in/api/users?page=2",
+						"value": "https://reqres.in/api/users?page=1",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@range(1,activity('Web1').output.total_pages)",
+						"type": "Expression"
+					},
+					"isSequential": true
 				}
 			}
 		],
