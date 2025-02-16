@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"method": "GET",
 					"url": {
-						"value": "https://reqres.in/api/users?page=1",
+						"value": "https://reqres.in/api/users?page=2",
 						"type": "Expression"
 					}
 				}
