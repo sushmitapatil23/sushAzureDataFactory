@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -29,7 +32,10 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dscustpurchase",
 				"dscustpurchase derive(Purchase = @(itemName=itemName,",
-				"          quantity=quantity)) ~> derivedColumn1"
+				"          quantity=quantity)) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(custId,",
+				"          custName),",
+				"     Purchase = collect(Purchase)) ~> aggregate1"
 			]
 		}
 	}
