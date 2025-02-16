@@ -102,7 +102,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(formatDateTime(activity('Get Metadata2').output.lastModified,'yyyyMMddHHmmss'),formatDateTime(variables('PreviousModifiedDate'),'yyyyMMddHHmmss'))",
+									"value": "@greater(formatDateTime(activity('Get Metadata2').output.lastModified,'yyyyMMddHHmmss'),string(formatDateTime(variables('PreviousModifiedDate'),'yyyyMMddHHmmss')))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
