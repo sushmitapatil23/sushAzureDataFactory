@@ -1,0 +1,6 @@
+{
+	"name": "ConvertCSV2JSONPipeline",
+	"properties": {
+		"annotations": []
+	}
+}
