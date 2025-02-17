@@ -24,7 +24,7 @@
 				"          empName as string,",
 				"          salary as string,",
 				"          dep as string,",
-				"          lastLonginUTC as timestamp",
+				"          lastLonginUTC as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
