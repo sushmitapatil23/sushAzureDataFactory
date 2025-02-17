@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadata Source",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "Get Metadata1_copy1",
+				"name": "Get Metadata Sink",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -65,13 +65,13 @@
 				"type": "Filter",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get Metadata Source",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "Get Metadata1_copy1",
+						"activity": "Get Metadata Sink",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -80,11 +80,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get Metadata Source').output.childItems",
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@not(contains(activity('Get Metadata1_copy1').output.childItems,Item()))",
+						"value": "@not(contains(activity('Get Metadata Sink').output.childItems,Item()))",
 						"type": "Expression"
 					}
 				}
