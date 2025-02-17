@@ -1,0 +1,44 @@
+{
+	"name": "ds_timezone",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "TimeZone.txt",
+				"container": "source"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empId",
+				"type": "String"
+			},
+			{
+				"name": "empName",
+				"type": "String"
+			},
+			{
+				"name": "salary",
+				"type": "String"
+			},
+			{
+				"name": "dep",
+				"type": "String"
+			},
+			{
+				"name": "lastLonginUTC",
+				"type": "String"
+			}
+		]
+	}
+}
