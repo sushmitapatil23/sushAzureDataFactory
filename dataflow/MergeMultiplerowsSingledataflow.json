@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "DestionationOutputSinkBlob",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -40,8 +44,10 @@
 				"aggregate1 derive(skill = replace(replace(replace(toString(skill),'[',''),']',''),'\"','')) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['MergeMultiplerowsSingleEmp.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
