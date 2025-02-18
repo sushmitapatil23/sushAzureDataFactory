@@ -8,18 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": {
-						"value": "@pipeline().parameters.Waittimeinseconds",
-						"type": "Expression"
-					}
+					"waitTimeInSeconds": 30
 				}
 			}
 		],
-		"parameters": {
-			"Waittimeinseconds": {
-				"type": "int"
-			}
-		},
 		"annotations": []
 	}
 }
