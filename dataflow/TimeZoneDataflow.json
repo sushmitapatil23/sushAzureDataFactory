@@ -37,7 +37,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 derive(lastLonginEST = toTimestamp(lastLonginUTC,'yyyy-MM-dd\\'T\\'hh:mm:ss')) ~> derivedColumn1",
+				"source1 derive(lastLonginEST = toTimestamp(lastLonginUTC,'yyyy-MM-dd hh:mm:ss') - hours(4)) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['TimeStampEST.txt'],",
