@@ -37,12 +37,20 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 derive(lastLonginEST = toTimestamp(lastLonginUTC,'yyyy-MM-dd hh:mm:ss') - hours(4)) ~> derivedColumn1",
+				"source1 derive(lastLoginEST = toTimestamp(lastLonginUTC,'yyyy-MM-dd hh:mm:ss') - hours(4)) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['TimeStampEST.txt'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empId,",
+				"          empName,",
+				"          salary,",
+				"          dep,",
+				"          lastLonginUTC,",
+				"          lastLoginEST",
+				"     ),",
 				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
