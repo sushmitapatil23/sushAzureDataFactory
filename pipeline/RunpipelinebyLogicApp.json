@@ -1,0 +1,25 @@
+{
+	"name": "RunpipelinebyLogicApp",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.Waittimeinseconds",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Waittimeinseconds": {
+				"type": "int"
+			}
+		},
+		"annotations": []
+	}
+}

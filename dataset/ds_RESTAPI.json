@@ -1,0 +1,23 @@
+{
+	"name": "ds_RESTAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_RestService",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"QueryParameter": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().QueryParameter",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
