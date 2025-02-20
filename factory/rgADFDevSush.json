@@ -3,7 +3,7 @@
 	"properties": {
 		"globalConfigurations": {
 			"PipelineBillingEnabled": "true",
-			"factoryStagingLSReferenceName": "AzureBlobStorage1",
+			"factoryStagingLSReferenceName": "ADLS_yauheniadls",
 			"factoryStagingLSType": "LinkedServiceReference"
 		}
 	},
